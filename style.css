@@ -26,14 +26,14 @@ body {
   overflow-x: hidden;
 }
 
-/* ── HEADER ── */
+/* ── HEADER (Mobile Base) ── */
 .site-header {
   background: var(--clr-bg);
   border-bottom: 1px solid var(--clr-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .header-inner {
@@ -42,19 +42,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 64px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
 }
 
 .brand-mark {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: var(--clr-primary);
   border-radius: 50%;
   display: flex;
@@ -62,7 +62,7 @@ body {
   justify-content: center;
   color: #fff;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.5px;
   flex-shrink: 0;
@@ -70,26 +70,25 @@ body {
 
 .brand-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: var(--clr-primary);
   letter-spacing: 0.04em;
 }
 
+/* Esconde a tagline no celular para poupar espaço */
 .header-tagline {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--clr-text-muted);
-  font-weight: 400;
+  display: none; 
 }
 
-/* ── HERO STRIP ── */
+/* ── HERO STRIP (Mobile Base) ── */
 .hero-strip {
-  background: linear-gradient(135deg, var(--clr-primary) 0%, #6b2020 100%);
+  background-image: url(./images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
   text-align: center;
-  padding: 3.5rem 2rem;
+  padding: 2.5rem 1.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -98,16 +97,16 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-  pointer-events: none;
+  filter: brightness(0.1);
 }
 
 .hero-strip h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: 0.02em;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  position: relative;
 }
 
 .hero-strip h1 em {
@@ -116,21 +115,29 @@ body {
 }
 
 .hero-strip p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.75;
   font-weight: 300;
+  position: relative;
 }
 
-/* ── FILTER TABS ── */
+/* ── FILTER TABS (Mobile Base - Scroll Horizontal) ── */
 .filter-bar {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem 2rem 0;
+  padding: 1.5rem 1.5rem 0;
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  overflow-x: auto; /* Permite scroll horizontal no mobile */
+  scrollbar-width: none; /* Esconde scrollbar no Firefox */
+  -ms-overflow-style: none;  /* Esconde scrollbar no IE and Edge */
+}
+
+.filter-bar::-webkit-scrollbar {
+  display: none; /* Esconde scrollbar no Chrome/Safari */
 }
 
 .filter-label {
@@ -139,19 +146,21 @@ body {
   text-transform: uppercase;
   color: var(--clr-text-muted);
   margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .filter-btn {
   background: none;
   border: 1.5px solid var(--clr-border);
   border-radius: 100px;
-  padding: 0.45rem 1.2rem;
+  padding: 0.45rem 1rem;
   font-family: 'Jost', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   color: var(--clr-text-muted);
   cursor: pointer;
+  white-space: nowrap;
   transition: var(--transition);
 }
 
@@ -162,11 +171,11 @@ body {
   color: #fff;
 }
 
-/* ── CATALOG GRID ── */
+/* ── CATALOG GRID (Mobile Base - UMA COLUNA) ── */
 .catalog {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;  
+  padding: 1.5rem;  
 }
 
 .section-label {
@@ -190,8 +199,8 @@ body {
 
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr; /* UMA COLUNA PADRÃO PARA MOBILE */
+  gap: 1.25rem;
   margin-bottom: 3rem;
 }
 
@@ -211,10 +220,8 @@ body {
   animation: fadeUp 0.5s ease both;
 }
 
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--clr-accent);
+.product-card:active {
+  transform: scale(0.98);
 }
 
 @keyframes fadeUp {
@@ -223,14 +230,13 @@ body {
 }
 
 .card-visual {
-  aspect-ratio: 1;
+  aspect-ratio: 4/3; /* Proporção um pouco mais retangular no mobile para não ocupar a tela toda */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4rem;
   position: relative;
   overflow: hidden;
-
 }
 
 .card-visual .ripple-bg {
@@ -249,10 +255,6 @@ body {
   transition: transform var(--transition);
 }
 
-.product-card:hover .emoji {
-  transform: scale(1.15) rotate(-5deg);
-}
-
 .card-badge {
   position: absolute;
   top: 0.75rem;
@@ -266,10 +268,11 @@ body {
   text-transform: uppercase;
   color: var(--clr-primary);
   backdrop-filter: blur(4px);
+  z-index: 2;
 }
 
 .card-body {
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -278,14 +281,14 @@ body {
 
 .card-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--clr-text);
   line-height: 1.3;
 }
 
 .card-volume {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clr-text-muted);
@@ -302,61 +305,55 @@ body {
 }
 
 .card-price {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--clr-primary);
   font-family: 'Jost', sans-serif;
 }
 
 .card-cta {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   background: var(--clr-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 0;
   transition: var(--transition);
 }
 
-.product-card:hover .card-cta {
-  background: var(--clr-primary);
-  transform: scale(1.1);
-}
-
-/* ── FOOTER ── */
+/* ── FOOTER (Mobile Base) ── */
 .site-footer {
   background: var(--clr-primary);
   color: rgba(255,255,255,0.9);
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   margin-top: 2rem;
 }
 
 .site-footer p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   letter-spacing: 0.04em;
 }
 
 .site-footer small {
   display: block;
-  margin-top: 0.4rem;
-  font-size: 0.72rem;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.9;
 }
 
-/* ── PRODUCT PAGE ── */
+/* ── PRODUCT PAGE (Mobile Base - UMA COLUNA) ── */
 .product-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .back-link {
@@ -369,29 +366,27 @@ body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 2rem;
-  transition: color var(--transition);
+  margin-bottom: 1.5rem;
 }
-
-.back-link:hover { color: var(--clr-primary); }
-.back-link span { font-size: 1.1rem; }
 
 .product-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: 1fr; /* UMA COLUNA PADRÃO PARA MOBILE */
+  gap: 1.5rem;
 }
 
 .product-visual-panel {
-  border-radius: 24px;
+  border-radius: 20px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 8rem;
+  font-size: 6rem;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 320px; /* Evita que a imagem fique gigante no mobile */
+  margin: 0 auto;
 }
 
 .product-visual-panel .big-emoji {
@@ -399,11 +394,6 @@ body {
   z-index: 1;
   filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
   animation: floatEmoji 3s ease-in-out infinite;
-}
-
-@keyframes floatEmoji {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-12px) rotate(3deg); }
 }
 
 .product-info {
@@ -422,7 +412,7 @@ body {
 
 .product-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: 2rem;
   font-weight: 500;
   line-height: 1.15;
   color: var(--clr-text);
@@ -441,7 +431,7 @@ body {
   background: var(--clr-bg-warm);
   border: 1.5px solid var(--clr-border);
   border-radius: 12px;
-  padding: 1rem 1.25rem;
+  padding: 1rem;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -459,7 +449,7 @@ body {
 }
 
 .price-value {
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--clr-primary);
   font-family: 'Jost', sans-serif;
@@ -467,7 +457,7 @@ body {
 }
 
 .volume-value {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--clr-text-muted);
   font-weight: 300;
   text-align: right;
@@ -475,7 +465,7 @@ body {
 
 .product-description {
   font-size: 0.95rem;
-  line-height: 1.75;
+  line-height: 1.6;
   color: var(--clr-text-muted);
   margin-bottom: 1.5rem;
 }
@@ -484,7 +474,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .tag {
@@ -532,51 +522,21 @@ body {
   margin-bottom: 0.1rem;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 700px) {
-  .product-layout {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .product-visual-panel {
-    max-width: 280px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .catalog-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-
-  .header-tagline { display: none; }
-}
-
-@media (max-width: 420px) {
-  .catalog-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-strip { padding: 2rem 1rem; }
-  .catalog, .product-page { padding: 1rem; }
-}
-
-/* ── PRODUCT IMAGES ── */
-.card-img {
+/* ── IMAGENS & HIDDEN CLASS ── */
+.card-img, .card-emoji-fallback {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .card-emoji-fallback {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .product-img {
   position: relative;
   z-index: 1;
@@ -586,7 +546,72 @@ body {
   filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
 }
 
-/* ── HIDDEN (for filter) ── */
 .product-card.hidden {
   display: none;
+}
+
+/* ========================================= */
+/* ── MEDIA QUERIES (PROGRESSIVE ENHANCEMENT) */
+/* ========================================= */
+
+/* TABLETS (A partir de 768px) */
+@media (min-width: 768px) {
+  .header-inner { height: 72px; padding: 0 2rem; }
+  .header-tagline { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clr-text-muted); }
+  
+  .hero-strip { padding: 3.5rem 2rem; }
+  .hero-strip h1 { font-size: 2.8rem; }
+  
+  .catalog, .filter-bar, .product-page { padding: 2rem; }
+  
+  /* No tablet, podemos usar 2 colunas para melhor aproveitamento */
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .product-visual-panel {
+    max-width: 100%; /* Volta a preencher a coluna */
+    font-size: 8rem;
+  }
+}
+
+/* DESKTOPS (A partir de 1024px) */
+@media (min-width: 1024px) {
+  .hero-strip h1 { font-size: 3.2rem; }
+  
+  /* No desktop, deixamos o grid preencher automaticamente com colunas */
+  .catalog-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .product-layout {
+    gap: 3rem;
+  }
+
+  .product-title {
+    font-size: 2.6rem;
+  }
+
+  /* Efeitos de Hover ativados apenas para dispositivos com mouse (desktop) */
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--clr-accent);
+  }
+
+  .product-card:hover .emoji {
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  .product-card:hover .card-cta {
+    background: var(--clr-primary);
+    transform: scale(1.1);
+  }
 }
